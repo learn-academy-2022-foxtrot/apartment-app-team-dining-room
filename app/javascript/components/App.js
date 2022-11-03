@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-
 import ApartmentEdit from "./pages/ApartmentEdit"
 import ApartmentIndex from "./pages/ApartmentIndex"
 import ApartmentNew from "./pages/ApartmentNew"
