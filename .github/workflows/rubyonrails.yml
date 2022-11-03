@@ -1,9 +1,9 @@
 name: "React in Rails CI"
 on:
   push:
-    branches: ["*"]
+    branches: [ "*" ]
   pull_request:
-    branches: ["*"]
+    branches: [ "*" ]
 jobs:
   rspec-test:
     runs-on: ubuntu-latest
