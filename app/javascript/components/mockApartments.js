@@ -1,11 +1,12 @@
 const apartments = [
   {
+    user_id: 1,
     street: "4 Privet Drive",
     city: "Little Whinging",
     state: "Surrey",
     manager: "Mr. Potter",
     email: "potter@example.com",
-    price: 2000,
+    price: "$2,600",
     bedrooms: 3,
     bathrooms: 2,
     pets: "yes",
@@ -13,12 +14,13 @@ const apartments = [
       "https://c8.alamy.com/comp/B0RJGE/small-bungalow-home-with-pathway-in-addlestone-surrey-uk-B0RJGE.jpg"
   },
   {
+    user_id: 2,
     street: "15 Yemen Road",
     city: "Yemen",
     state: "Yemen",
     manager: "Mr. Bing",
     email: "bing@example.com",
-    price: 1000,
+    price: "$3,500",
     bedrooms: 3,
     bathrooms: 2,
     pets: "yes",
@@ -26,12 +28,13 @@ const apartments = [
       "https://i.pinimg.com/736x/4f/c1/ce/4fc1ce196ea1412f670d477a026ba2c6--saudi-arabia-drawing-reference.jpg"
   },
   {
+    user_id: 3,
     street: "742 Evengreen Terrace",
     city: "Springfield",
     state: "Any State",
     manager: "Mr. Simpson",
     email: "simpson@example.com",
-    price: 1000,
+    price: "$1,500",
     bedrooms: 3,
     bathrooms: 2,
     pets: "yes",
