@@ -1,10 +1,45 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
-const Home = () => {
+const Home = ({ new_user_route, sign_in_route, logged_in }) => {
+  const navigate = useNavigate()
+  const handleSubmit = () => {
+    navigate("/apartmentindex")
+  }
+
   return (
-    <>
-      <h3>Home</h3>
-    </>
+    <div>
+      <h1>Welcome!</h1>
+      <p>
+        lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet,
+        consectetur adi lorem ipsum dolor sit amet, consectetur adi lorem ipsum
+        dolor sit amet, consectetur adi
+      </p>
+
+      {/* Show when LOGGED IN */}
+      {logged_in && (
+        <div>
+          <button onClick={handleSubmit} >My Listings</button>
+          <button onClick={handleSubmit} >View Listings</button>
+        </div>
+      )}
+
+      {/* Show when LOGGED OUT */}
+      {!logged_in && (
+        <div>
+          <button>
+            <a href={sign_in_route} className="nav-link">
+              Sign In
+            </a>
+          </button>
+          <button>
+            <a href={new_user_route} className="nav-link">
+              Sign Up
+            </a>
+          </button>
+        </div>
+      )}
+    </div>
   )
 }
 
