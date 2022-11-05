@@ -12,7 +12,7 @@ class ApartmentsController < ApplicationController
       render json: apartment.errors, status: 422
     end
   end
-  
+
   def update
     apartment = Apartment.find(params[:id])
     apartment.update(apartment_params)
@@ -31,9 +31,10 @@ class ApartmentsController < ApplicationController
       render json: apartment.errors
     end
   end
-  
+
   private
+
   def apartment_params
     params.require(:apartment).permit(:street, :city, :state, :manager, :email, :price, :bedrooms, :bathrooms, :pets, :image, :user_id)
-  end 
+  end
 end
