@@ -32,4 +32,219 @@ RSpec.describe "Apartments", type: :request do
       expect(apartment["email"]).to eq "mjones@example.com"
     end
   end
+  # -----create-----
+  describe "POST /create" do
+    it "creates a new apartment" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          image: "https://img.zumpercdn.com/523001002/1280x960?fit=crop&h=135&w=414",
+          user_id: user.id
+        }
+      }
+
+      post "/apartments", params: apartment_params
+
+      apartment_response = JSON.parse(response.body)
+      expect(apartment_response["street"]).to eq "221B Baker Street"
+      expect(apartment_response["city"]).to eq "London"
+      expect(apartment_response["state"]).to eq "England"
+      expect(apartment_response["manager"]).to eq "Ms. Hudson"
+      expect(apartment_response["email"]).to eq "mzhud@email.com"
+      expect(apartment_response["price"]).to eq "1500"
+      expect(apartment_response["bedrooms"]).to eq 2
+      expect(apartment_response["bathrooms"]).to eq 2
+      expect(apartment_response["pets"]).to eq "yes"
+      expect(apartment_response["image"]).to eq "https://img.zumpercdn.com/523001002/1280x960?fit=crop&h=135&w=414"
+      expect(apartment_response["user_id"]).to eq user.id
+    end
+
+    it "cannot create a new apartment without a street" do
+      apartment_params = {
+        apartment: {
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["street"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without a city" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["city"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without a state" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["state"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without a manager" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["manager"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without an email" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["email"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without a price" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          bedrooms: 2,
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["price"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without bedrooms" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bathrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["bedrooms"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without bathrooms" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          pets: "yes",
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["bathrooms"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+
+    it "cannot create a new apartment without pets" do
+      apartment_params = {
+        apartment: {
+          street: "221B Baker Street",
+          city: "London",
+          state: "England",
+          manager: "Ms. Hudson",
+          email: "mzhud@email.com",
+          price: "1500",
+          bedrooms: 2,
+          bathrooms: 2,
+          user_id: user.id
+        }
+      }
+      post "/apartments", params: apartment_params
+      error_response = JSON.parse(response.body)
+      expect(error_response["pets"]).to include "can't be blank"
+      expect(response).to have_http_status(422)
+    end
+  end
 end
