@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom"
 
 const Home = ({ new_user_route, sign_in_route, logged_in }) => {
   const navigate = useNavigate()
-  const handleSubmit = () => {
-    navigate("/apartmentindex")
+  const handleSubmit = (id) => {
+    if (id === "index") {
+      navigate("/apartmentindex")
+    } else {
+      navigate("/userapartmentindex")
+    }
   }
 
   return (
@@ -19,8 +23,8 @@ const Home = ({ new_user_route, sign_in_route, logged_in }) => {
       {/* Show when LOGGED IN */}
       {logged_in && (
         <div>
-          <button onClick={handleSubmit} >My Listings</button>
-          <button onClick={handleSubmit} >View Listings</button>
+          <button onClick={() => handleSubmit("user-index")} >My Listings</button>
+          <button onClick={() => handleSubmit("index")}>View Listings</button>
         </div>
       )}
 

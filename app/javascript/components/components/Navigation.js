@@ -27,7 +27,7 @@ const Navigation = ({
         {logged_in && (
           <>
             <NavItem>
-              <a href="/apartmentindex" className="nav-link">
+              <a href="/userapartmentindex" className="nav-link">
                 My Listings
               </a>
             </NavItem>
