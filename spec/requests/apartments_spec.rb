@@ -248,28 +248,31 @@ RSpec.describe "Apartments", type: :request do
     end
   end
 
-  #--- Delete ---
-  describe "DELETE /destroy" do
-    it "deletes an apartment" do
-      Apartment.create(
-        id: 1,
-        street: "124 Conch Street",
-        city: "Bikini Bottom",
-        state: "Pacific Ocean",
-        manager: "Mustachio Jones",
-        email: "mjones@example.com",
-        price: "1000 sand dollars",
-        bedrooms: 2,
-        bathrooms: 2,
-        pets: "yes",
-        image: "https://images.thedailystar.net/sites/default/files/styles/very_big_201/public/feature/images/who_lives_in_a_pineapple_under_the_sea.jpg?itok=iYr37hhG",
-        user_id: user.id
-      )
-
-      delete apartment_path(1)
-      expect(response).to have_http_status(200)
+    # -----destroy-----
+    describe "DELETE /destroy" do
+      it "deletes an apartment" do
+        apartment_params = {
+          apartment: {
+            street: "124 Conch Street",
+            city: "Bikini Bottom",
+            state: "Pacific Ocean",
+            manager: "Mustachio Jones",
+            email: "mjones@example.com",
+            price: "1000 sand dollars",
+            bedrooms: 2,
+            bathrooms: 2,
+            pets: "yes",
+            image: "https://images.thedailystar.net/sites/default/files/styles/very_big_201/public/feature/images/who_lives_in_a_pineapple_under_the_sea.jpg?itok=iYr37hhG",
+            user_id: user.id
+          }
+        }
+  
+        post "/apartments", params: apartment_params
+        apartment = Apartment.first
+        delete "/apartments/#{apartment.id}"
+        expect(response).to have_http_status(200)
+      end
     end
-  end
 
   #--- Update ---
   describe "UPDATE /patch" do
