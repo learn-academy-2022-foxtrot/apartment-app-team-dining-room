@@ -32,9 +32,9 @@ const App = (props) => {
       <Header {...props} />
       <Routes>
         <Route exact path="/" element={<Home {...props}/>} />
-        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments}/>} />
+        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />
         <Route path="/userapartmentindex" element={<ProtectedApartmentIndex apartments={apartments} {...props}/>} />
-        <Route path="/apartmentshow" element={<ApartmentShow />} />
+        <Route path="/apartmentshow/:id" element={<ApartmentShow apartments={ apartments } />} />
         <Route path="/apartmentnew" element={<ApartmentNew />} />
         <Route path="/apartmentedit" element={<ApartmentEdit />} />
         <Route element={<NotFound />} />
