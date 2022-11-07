@@ -270,4 +270,52 @@ RSpec.describe "Apartments", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  #--- Update ---
+  describe "UPDATE /patch" do
+    it "Updates an apartment" do
+      # CREATE
+      Apartment.create(
+        id: 1,
+        street: "124 Conch Street",
+        city: "Bikini Bottom",
+        state: "Pacific Ocean",
+        manager: "Mustachio Jones",
+        email: "mjones@example.com",
+        price: "1000 sand dollars",
+        bedrooms: 2,
+        bathrooms: 2,
+        pets: "yes",
+        image: "https://images.thedailystar.net/sites/default/files/styles/very_big_201/public/feature/images/who_lives_in_a_pineapple_under_the_sea.jpg?itok=iYr37hhG",
+        user_id: user.id
+      )
+
+      # Send a request to server
+      patch apartment_path(1, params: {
+        apartment: {
+          id: 1,
+          street: "PATCH Conch Street",
+          city: "PATCH Bikini Bottom",
+          state: "PATCH Pacific Ocean",
+          manager: "PATCH Mustachio Jones",
+          email: "PATCH mjones@example.com",
+          price: "PATCH 1000 sand dollars",
+          bedrooms: 1,
+          bathrooms: 1,
+          pets: "No",
+          image: "https://images.thedailystar.net/sites/default/files/styles/very_big_201/public/feature/images/who_lives_in_a_pineapple_under_the_sea.jpg?itok=iYr37hhG",
+          user_id: user.id
+        }
+      })
+
+      # Assure we get good code back
+      expect(response).to have_http_status(200)
+
+      # Look up the cat we created
+      apartment = Apartment.first
+
+      # Check to see if cat has the same attribute that were given
+      expect(apartment.street).to eq "PATCH Conch Street"
+    end
+  end
 end
