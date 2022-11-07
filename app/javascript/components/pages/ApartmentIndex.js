@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const ApartmentIndex = ({ apartments }) => {
   return (
@@ -15,10 +15,10 @@ const ApartmentIndex = ({ apartments }) => {
                 {/* {apartment.pets}, */}
                 <img src={apartment.image} width="400px" />
               </div>
-            );
+            )
           })}
     </div>
-  );
-};
+  )
+}
 
-export default ApartmentIndex;
+export default ApartmentIndex

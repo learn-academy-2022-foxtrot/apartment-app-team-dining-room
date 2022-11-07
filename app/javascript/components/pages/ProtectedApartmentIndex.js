@@ -1,17 +1,17 @@
-import React from "react";
+import React from "react"
 
-const UserApartmentIndex = ({ apartments, logged_in, current_user }) => {
-  console.log("apartments", apartments);
-  console.log("current User ID", current_user.id);
+const ProtectedUserIndex = ({ apartments, logged_in, current_user }) => {
+  console.log("apartments", apartments)
+  console.log("current User ID", current_user.id)
   return (
     <div>
-      <h3>User's Apartment Index</h3>
+      <h3>Protected Apartment Index</h3>
       {logged_in && (
         <>
           {apartments.map((apartment, index) => {
             return (
               <div key={index}>
-                {current_user.id == apartments[index].id && (
+                {current_user.id === apartments[index].id && (
                   <>
                     {apartment.street},{apartment.city},{apartment.state},
                     {/* {apartment.manager}, */}
@@ -22,14 +22,14 @@ const UserApartmentIndex = ({ apartments, logged_in, current_user }) => {
                   </>
                 )}
               </div>
-            );
+            )
           })}
         </>
       )}
 
       {!logged_in && <h1>Please Log In</h1>}
     </div>
-  );
-};
+  )
+}
 
-export default UserApartmentIndex;
+export default ProtectedUserIndex

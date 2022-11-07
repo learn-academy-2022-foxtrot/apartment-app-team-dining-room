@@ -4,13 +4,11 @@ import { useNavigate } from "react-router-dom"
 const Home = ({ new_user_route, sign_in_route, logged_in }) => {
   const navigate = useNavigate()
   const handleSubmit = (id) => {
-    
-    if(id === "index") {
+    if (id === "index") {
       navigate("/apartmentindex")
     } else {
       navigate("/userapartmentindex")
     }
-    
   }
 
   return (
